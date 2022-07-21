@@ -7,7 +7,6 @@ List<Image> imageListFromJson(String str) {
 }
 
 Image imageFromJson(String str) => Image.fromJson(json.decode(str));
-
 String imageToJson(Image data) => json.encode(data.toJson());
 
 class Image {
@@ -17,7 +16,10 @@ class Image {
     this.url,
     this.width,
     this.height,
-  });
+    this.subId,
+    this.createdAt,
+    this.originalFilename,
+    this.breedIds,});
 
   Image.fromJson(dynamic json) {
     if (json['breeds'] != null) {
@@ -30,13 +32,20 @@ class Image {
     url = json['url'];
     width = json['width'];
     height = json['height'];
+    subId = json['sub_id'];
+    createdAt = json['created_at'];
+    originalFilename = json['original_filename'];
+    breedIds = json['breed_ids'];
   }
-
   List<Breeds>? breeds;
   String? id;
   String? url;
   int? width;
   int? height;
+  String? subId;
+  String? createdAt;
+  String? originalFilename;
+  String? breedIds;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -47,12 +56,16 @@ class Image {
     map['url'] = url;
     map['width'] = width;
     map['height'] = height;
+    map['sub_id'] = subId;
+    map['created_at'] = createdAt;
+    map['original_filename'] = originalFilename;
+    map['breed_ids'] = breedIds;
     return map;
   }
+
 }
 
 Breeds breedsFromJson(String str) => Breeds.fromJson(json.decode(str));
-
 String breedsToJson(Breeds data) => json.encode(data.toJson());
 
 class Breeds {
@@ -114,7 +127,6 @@ class Breeds {
 }
 
 Height heightFromJson(String str) => Height.fromJson(json.decode(str));
-
 String heightToJson(Height data) => json.encode(data.toJson());
 
 class Height {
@@ -140,7 +152,6 @@ class Height {
 }
 
 Weight weightFromJson(String str) => Weight.fromJson(json.decode(str));
-
 String weightToJson(Weight data) => json.encode(data.toJson());
 
 class Weight {

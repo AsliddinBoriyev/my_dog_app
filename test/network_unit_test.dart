@@ -1,17 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_dog_app/models/image_model.dart'hide Breeds;
+import 'package:my_dog_app/models/image_model.dart' hide Breeds;
 import 'package:my_dog_app/models/vote_model.dart';
-import 'package:my_dog_app/models/breed_model.dart'hide Image;
+import 'package:my_dog_app/models/breed_model.dart' hide Image;
 import 'package:my_dog_app/services/network_service.dart';
 
 void main() {
-
   // API_LIST_BREADS
   group("Test: Breed Category in Server", () {
-
     String? response;
     test("test1: check network: one element", () async {
-      response = await NetworkService.GET("${NetworkService.API_LIST_BREADS}/1", NetworkService.paramsEmpty());
+      response = await NetworkService.GET(
+          "${NetworkService.API_LIST_BREADS}/1", NetworkService.paramsEmpty());
       expect(response, isNotNull);
     });
 
@@ -21,11 +20,22 @@ void main() {
     });
 
     test("test3: check network: list", () async {
-      response = await NetworkService.GET(NetworkService.API_LIST_BREADS, NetworkService.paramsEmpty());
+      response = await NetworkService.GET(
+          NetworkService.API_LIST_BREADS, NetworkService.paramsEmpty());
       expect(response, isNotNull);
     });
 
     test("test4: check model list", () async {
+      List<Breed> breedList = breedListFromJson(response!);
+      expect(breedList, isList);
+    });
+    test("Test5: Search for getting response", () async {
+      response = await NetworkService.GET(NetworkService.API_BREADS_SEARCH,
+          NetworkService.paramsBreedSearch("American"));
+      expect(response, isNotNull);
+    });
+
+    test("Test: Search for getting response", () async {
       List<Breed> breedList = breedListFromJson(response!);
       expect(breedList, isList);
     });
@@ -35,7 +45,8 @@ void main() {
   group("Test: Votes", () {
     String? response;
     test("test1: get all votes", () async {
-      response = await NetworkService.GET(NetworkService.API_LIST_VOTES, NetworkService.paramsVotesList());
+      response = await NetworkService.GET(
+          NetworkService.API_LIST_VOTES, NetworkService.paramsVotesList());
       expect(response, isNotNull);
     });
 
@@ -49,7 +60,8 @@ void main() {
 
     String? responseOne;
     test("test3: get one vote", () async {
-      responseOne = await NetworkService.GET(NetworkService.API_ONE_VOTE + id, NetworkService.paramsEmpty());
+      responseOne = await NetworkService.GET(
+          NetworkService.API_ONE_VOTE + id, NetworkService.paramsEmpty());
       expect(responseOne, isNotNull);
     });
 
@@ -61,28 +73,74 @@ void main() {
 
     String? responseCreate;
     test("test5: create new vote", () async {
-      responseCreate = await NetworkService.POST(NetworkService.API_LIST_VOTES, NetworkService.paramsEmpty(), NetworkService.bodyVotes("LmGFTdAev", "subIdOne", 1));
+      responseCreate = await NetworkService.POST(
+          NetworkService.API_LIST_VOTES,
+          NetworkService.paramsEmpty(),
+          NetworkService.bodyVotes("LmGFTdAev", "subIdOne", 1));
       expect(responseCreate, isNotNull);
     });
 
     String? responseDelete;
     test("test6: delete my old vote", () async {
-      responseDelete = await NetworkService.DELETE(NetworkService.API_ONE_VOTE + "104069", NetworkService.paramsEmpty());
+      responseDelete = await NetworkService.DELETE(
+          "${NetworkService.API_ONE_VOTE}104077", NetworkService.paramsEmpty());
       expect(responseDelete is String, true);
     });
   });
 
-  //API_IMAGE
-  group("Test:Image", () {
+  // API_IMAGE
+  group("Test: Images", () {
     String? resAllImages;
-    test("test:get all images", ()async {
-      resAllImages=await NetworkService.GET(NetworkService.API_IMAGE_LIST, NetworkService.paramsImageSearch(size:"Full"));
-   expect(resAllImages, isNotNull);
+    test("test1: get all images", () async {
+      resAllImages = await NetworkService.GET(NetworkService.API_IMAGE_LIST,
+          NetworkService.paramsImageSearch(size: "full"));
+      expect(resAllImages, isNotNull);
     });
-    List<Image>?imageList;
-    test("test2:parsing images", () {
-      imageList =imageListFromJson(resAllImages!);
+
+    List<Image>? imageList;
+    test("test2: parsing images", () {
+      imageList = imageListFromJson(resAllImages!);
       expect(imageList!.isNotEmpty, isTrue);
+    });
+
+    String? resUploadImg;
+    test("test3: upload images", () async {
+      resUploadImg = await NetworkService.MULTIPART(
+          NetworkService.API_IMAGE_UPLOAD,
+          "assets/images/alabay.jpeg",
+          NetworkService.bodyImageUpload("this-alabay"));
+      expect(resUploadImg, isNotNull);
+    });
+
+    String? resGetMyImage;
+    test("test4: get my image", () async {
+      resGetMyImage = await NetworkService.GET(
+          NetworkService.API_MY_IMAGES, NetworkService.paramsMyImage());
+      expect(resGetMyImage, isNotNull);
+    });
+    //API_FAVORITES
+    group("Test: Favorite", () {
+      String? response;
+      test("test1: get one favorites", () async {
+        response = await NetworkService.GET(NetworkService.API_FAVOURITES_ID,
+            NetworkService.paramsFavoritesList());
+        expect(response, isNotNull);
+      });
+      String? favourite;
+      test("Test2:get specific favourite", () async {
+        favourite = await NetworkService.GET(
+          NetworkService.API_FAVOURITES_ID,
+          NetworkService.paramsSpecificFavorite(),
+        );
+        expect(favourite!.isNotEmpty, true);
+      });
+      String? favouriteDelete;
+      test("test3: delete my old favourite", () async {
+        favouriteDelete = await NetworkService.DELETE(
+            NetworkService.API_DELETE_FAVOURITE + "48647",
+            NetworkService.paramsDeleteFavourite());
+        expect(favouriteDelete is String, true);
+      });
     });
   });
 }

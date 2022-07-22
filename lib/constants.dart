@@ -37,7 +37,7 @@ var drawerTextColor = const TextStyle(
 var tilePadding = const EdgeInsets.only(left: 8.0, right: 8, top: 8);
 var myDrawer = Drawer(
   backgroundColor: Colors.grey[300],
-  elevation: 0,
+  elevation: 2,
   child: Column(
     children: [
       Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_dog_app/constants.dart';
+
+import '../constants.dart';
 
 class MobileScaffold extends StatefulWidget {
   const MobileScaffold({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-             AspectRatio(
+            AspectRatio(
               aspectRatio: 10,
               child: SizedBox(
                 width: double.infinity,

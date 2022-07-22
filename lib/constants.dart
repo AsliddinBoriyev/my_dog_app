@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 var defaultBackgroundColor = Colors.white;
 var appBarColor = Colors.
-yellowAccent;
+black;
 var myAppBar = AppBar(
-  backgroundColor: Colors.
-  black,
+  backgroundColor: Colors.white,
+  iconTheme: const IconThemeData(
+    color: Colors.black,
+  ),
+  elevation: 0,
   actions: [
     Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,11 +20,11 @@ var myAppBar = AppBar(
             ),
             Text(
               'HUMMING',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
             Text(
               "BIRD",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             )
           ],
         ),
@@ -37,7 +39,7 @@ var drawerTextColor = const TextStyle(
 var tilePadding = const EdgeInsets.only(left: 8.0, right: 8, top: 8);
 var myDrawer = Drawer(
   backgroundColor: Colors.grey[300],
-  elevation: 2,
+  elevation: 0,
   child: Column(
     children: [
       Container(

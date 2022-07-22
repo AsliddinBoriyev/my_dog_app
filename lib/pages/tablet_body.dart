@@ -17,42 +17,79 @@ class _TabletScaffoldState extends State<TabletScaffold> {
       drawer: myDrawer,
       body: Center(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              AspectRatio(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:  [
+               const AspectRatio(
                 aspectRatio: 10,
-                child: SizedBox(
+                child:  SizedBox(
                   width: double.infinity,
                 ),
               ),
-              Text(
+              const Text(
                 'FLUTTER WEB',
-                style: TextStyle(color: Colors.white, fontSize: 25,fontWeight: FontWeight.bold),
+                style:  TextStyle(
+                    color: Colors.black,
+                    fontSize: 33,
+                    fontWeight: FontWeight.bold),
               ),
-              Text(
+              const Text(
                 'THE BASICS',
-                style: TextStyle(color: Colors.white, fontSize: 33,fontWeight: FontWeight.bold),
+                style:  TextStyle(
+                    color: Colors.black,
+                    fontSize: 33,
+                    fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20,),
-              Text(
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
                 'In this course we will go over the basics of using',
-                style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                style:  TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10,),
-              Text(
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
                 'Flutter Web for development.Topics will include',
-                style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10,),
-              Text(
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
                 'Responsive Layout,Deploying,Font Changes,Hover',
-                style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                style:  TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10,),
-              Text(
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
                 'functionality,Modals and more.',
-                style: TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
               ),
+               const SizedBox(
+                height: 60,
+              ),
+              ElevatedButton(onPressed: (){} , child:Container(
+                alignment: Alignment.center,
+                height: 50,
+                width: 300,
+                color: Colors.green,
+                child:  const Text("join Course"),
+              ),
+              )
             ]),
       ),
     );

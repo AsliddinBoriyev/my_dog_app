@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:my_dog_app/pages/desktop_page.dart';
+import 'package:my_dog_app/pages/desktop_page.dart';
 import 'package:my_dog_app/pages/mobile_page.dart';
 import 'package:my_dog_app/pages/responsive_layout.dart';
 import 'package:my_dog_app/pages/tablet_body.dart';

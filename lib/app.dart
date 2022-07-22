@@ -5,9 +5,10 @@ class MyDogApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       title: "My Dog App",
       debugShowCheckedModeBanner: false,
+      home: Container(),
     );
   }
 }
